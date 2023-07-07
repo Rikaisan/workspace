@@ -1,0 +1,8 @@
+{
+    "workbench.iconTheme": "catppuccin-mocha",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', 'monospace', monospace",
+    "editor.fontSize": 12,
+    "editor.minimap.enabled": false,
+    "explorer.confirmDelete": false
+}
