@@ -1,9 +1,15 @@
+acpi
+acpi_call
+acpid
 base-devel
 bash-completion
 bat
 bat-extras
+bluez
+bluez-utils
 btop
 byobu
+dialog
 exa
 fd
 gdu
@@ -18,8 +24,8 @@ network-manager-applet
 networkmanager
 openssh
 p7zip
-python3
 python-pip
+python3
 ranger
 reflector
 ripgrep
@@ -27,6 +33,7 @@ rustup
 stow
 sudo
 timeshift
+tlp
 tmux
 tree
 wget

@@ -57,6 +57,7 @@ fi
 # echo "$PREFIX Refreshing mirrors..."
 # pacman -S --needed reflector
 # reflector --save /etc/pacman.d/mirrorlist --ipv4 --ipv6 --protocol https --latest 20 --sort rate
+printf "[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" >> /etc/pacman.conf
 
 # ------------------------------------------------------------------------ Paru
 
@@ -90,7 +91,7 @@ chown -R $USERNAME:$USERNAME $TMP_LIST_DIR
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-su $USERNAME -Pc "paru -S --needed - < $TMP_LIST_DIR/essential.pkglist"
+su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < essential.pkglist"
 systemctl enable NetworkManager
 
 echo "$WARN_PREFIX Installing Starship..."
@@ -104,7 +105,7 @@ read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[y/N] " -
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -Pc "paru -S --needed - < $TMP_LIST_DIR/environment.pkglist"
+    su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < environment.pkglist"
     systemctl enable SDDM
     echo "$SUCCESS_PREFIX Done!"
 fi
@@ -114,7 +115,7 @@ read -p "$INPUT_PREFIX Do you want to install the extra apps?[y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -Pc "paru -S --needed - < $TMP_LIST_DIR/extra.pkglist"
+    su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < extra.pkglist"
     usermod -aG docker $USERNAME
     echo "$SUCCESS_PREFIX Done!"
 fi

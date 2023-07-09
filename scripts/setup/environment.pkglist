@@ -1,3 +1,4 @@
+cups
 firefox
 gtk4
 gvfs
@@ -10,6 +11,10 @@ nvidia-open
 nvidia-settings
 nvidia-utils
 nvtop
+pipewire
+pipewire-alse
+pipewire-jack
+pipewire-pulse
 polkit-gnome
 sddm
 swww
