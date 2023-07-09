@@ -65,8 +65,6 @@ echo "$WARN_PREFIX git, sudo and rust will be installed if you don't have them."
 echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
 pacman -S --needed git base-devel sudo rustup
-
-echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/rikai-install.conf
 su $USERNAME -Pc "rustup default stable"
 
 # echo "$IMPORTANT_PREFIX Run ./paru.sh to continue..."
@@ -142,7 +140,6 @@ fi
 # ------------------------------------------------------------------------ Env Variables
 
 cd $SCRIPT_DIR
-echo "%wheel ALL=(ALL:ALL) ALL" > /etc/sudoers.d/rikai-install.conf
 
 if !(grep -q ZDOTDIR /etc/zsh/zshenv 2> /dev/null)
 then
