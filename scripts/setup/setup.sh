@@ -137,16 +137,19 @@ read -p "$IMPORTANT_PREFIX Do you want to link the dotfiles?[y/N] " -n 1 -r
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo "$PREFIX Copying dotfiles..."
-    cp -r ../../dotfiles /home/$USERNAME/
+    mkdir /home/$USERNAME/workspace
+    cp -r ../../* /home/$USERNAME/workspace/
 
-    cd /home/$USERNAME/dotfiles
-    for dir in /home/$USERNAME/dotfiles     # list directories in the form "/tmp/dirname/"
+    cd /home/$USERNAME/workspace/dotfiles
+    for dir in /home/$USERNAME/workspace/dotfiles  # list directories in the form "/tmp/dirname/"
     do
         dir=${dir%*/}      # remove the trailing "/"
         dir=${dir##*/}    # print everything after the final "/"
 
         stow -t /home/$USERNAME $dir
     done
+    cd /home
+    chown -R $USERNAME:$USERNAME $USERNAME
     echo "$SUCCESS_PREFIX Done!"
 fi
 
