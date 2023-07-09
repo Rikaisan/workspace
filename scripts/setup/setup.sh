@@ -55,7 +55,7 @@ reflector --save /etc/pacman.d/mirrorlist --ipv4 --ipv6 --protocol https --lates
 echo "$WARN_PREFIX git will be installed if you don't have it."
 echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
-pacman -S --needed git
+pacman -S --needed git base-devel sudo
 git clone https://aur.archlinux.org/paru.git /tmp/paru
 chown -R $USERNAME:$USERNAME /tmp/paru
 su $USERNAME -c "cd /tmp/paru && makepkg -Ccsi"
@@ -67,7 +67,7 @@ echo "$SUCCESS_PREFIX Finished installing paru."
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-paru -S --needed base-devel rustup
+paru -S --needed rustup
 echo "$WARN_PREFIX Installing Rust..."
 rustup default stable
 
