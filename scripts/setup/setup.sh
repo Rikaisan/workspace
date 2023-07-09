@@ -36,19 +36,27 @@ fi
 
 # ------------------------------------------------------------------------ User
 
-    read -p "$INPUT_PREFIX Type the username you want to use: " -r
-    USERNAME=$REPLY
+read -p "$INPUT_PREFIX Type the username you want to use: " -r
+USERNAME=$REPLY
 
+if !(grep -q $USERNAME /etc/group 2> /dev/null)
+then
     echo "$PREFIX creating user '$USERNAME'..."
     useradd -m -G wheel $USERNAME
     passwd $USERNAME
     echo "$SUCCESS_PREFIX User created!"
+else
+    echo "$PREFIX User already exists, skipping..."
+fi
+
+
+
 
 # ------------------------------------------------------------------------ Mirrors
 
-echo "$PREFIX Refreshing mirrors..."
-pacman -S --needed reflector
-reflector --save /etc/pacman.d/mirrorlist --ipv4 --ipv6 --protocol https --latest 20 --sort rate
+# echo "$PREFIX Refreshing mirrors..."
+# pacman -S --needed reflector
+# reflector --save /etc/pacman.d/mirrorlist --ipv4 --ipv6 --protocol https --latest 20 --sort rate
 
 # ------------------------------------------------------------------------ Paru
 
