@@ -90,7 +90,7 @@ chown -R $USERNAME:$USERNAME $TMP_LIST_DIR
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-su $USERNAME -c "cd $TMP_LIST_DIR && paru -S --needed - < essential.pkglist"
+su $USERNAME -Pc "paru -S --needed - < $TMP_LIST_DIR/essential.pkglist"
 systemctl enable NetworkManager
 
 echo "$WARN_PREFIX Installing Starship..."
@@ -104,7 +104,7 @@ read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[y/N] " -
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -c "cd $TMP_LIST_DIR && paru -S --needed - < environment.pkglist"
+    su $USERNAME -Pc "paru -S --needed - < $TMP_LIST_DIR/environment.pkglist"
     systemctl enable SDDM
     echo "$SUCCESS_PREFIX Done!"
 fi
@@ -114,7 +114,7 @@ read -p "$INPUT_PREFIX Do you want to install the extra apps?[y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -c "cd $TMP_LIST_DIR && paru -S --needed - < extra.pkglist"
+    su $USERNAME -Pc "paru -S --needed - < $TMP_LIST_DIR/extra.pkglist"
     usermod -aG docker $USERNAME
     echo "$SUCCESS_PREFIX Done!"
 fi
