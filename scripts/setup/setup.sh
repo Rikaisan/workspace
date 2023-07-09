@@ -70,16 +70,27 @@ su $USERNAME -c "rustup default stable"
 # echo "$IMPORTANT_PREFIX Run ./paru.sh to continue..."
 # chmod +x $SCRIPT_DIR/paru.sh
 # su $USERNAME
-su $USERNAME -c "git clone https://aur.archlinux.org/paru.git /tmp/paru && cd /tmp/paru && makepkg -Ccsi"
+if ! command -v paru &> /dev/null
+then
+    su $USERNAME -c "git clone https://aur.archlinux.org/paru.git /tmp/paru && cd /tmp/paru && makepkg -Ccsi"
+fi
+
 rm -rf /tmp/paru
 echo "$SUCCESS_PREFIX Finished installing paru."
 
 # ------------------------------------------------------------------------ Packages
 
+$TMP_LIST_DIR=/tmp/ispackages
+cd $SCRIPT_DIR
+mkdir $TMP_LIST_DIR
+cp *.pkglist $TMP_LIST_DIR/
+chown -R $USERNAME:$USERNAME $TMP_LIST_DIR
+
+
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-su $USERNAME -c "paru -S --needed - < $SCRIPT_DIR/essential.pkglist"
+su $USERNAME -c "paru -S --needed - < $TMP_LIST_DIR/essential.pkglist"
 systemctl enable NetworkManager
 
 echo "$WARN_PREFIX Installing Starship..."
@@ -93,7 +104,7 @@ read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[y/N] " -
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -c "paru -S --needed - < $SCRIPT_DIR/environment.pkglist"
+    su $USERNAME -c "paru -S --needed - < $TMP_LIST_DIR/environment.pkglist"
     systemctl enable SDDM
     echo "$SUCCESS_PREFIX Done!"
 fi
@@ -103,10 +114,12 @@ read -p "$INPUT_PREFIX Do you want to install the extra apps?[y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -c "paru -S --needed - < $SCRIPT_DIR/extra.pkglist"
+    su $USERNAME -c "paru -S --needed - < $TMP_LIST_DIR/extra.pkglist"
     usermod -aG docker $USERNAME
     echo "$SUCCESS_PREFIX Done!"
 fi
+
+rm -rf /tmp/ispackages
 
 # ------------------------------- Bootloader
 
