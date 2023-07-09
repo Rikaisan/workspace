@@ -60,10 +60,12 @@ fi
 
 # ------------------------------------------------------------------------ Paru
 
-echo "$WARN_PREFIX git will be installed if you don't have it."
+echo "$WARN_PREFIX git, sudo and rust will be installed if you don't have them."
 echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
-pacman -S --needed git base-devel sudo
+pacman -S --needed git base-devel sudo rustup
+echo "$WARN_PREFIX Installing Rust..."
+rustup default stable
 git clone https://aur.archlinux.org/paru.git /tmp/paru
 chown -R $USERNAME:$USERNAME /tmp/paru
 su $USERNAME -c "cd /tmp/paru && makepkg -Ccsi"
@@ -75,10 +77,6 @@ echo "$SUCCESS_PREFIX Finished installing paru."
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-paru -S --needed rustup
-echo "$WARN_PREFIX Installing Rust..."
-rustup default stable
-
 paru -S --needed - < essentials.pkglist
 systemctl enable NetworkManager
 
