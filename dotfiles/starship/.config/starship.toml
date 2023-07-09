@@ -43,6 +43,7 @@ style = "bg:#9A348E"
 disabled = false # Disabled by default
 [os.symbols]
 Manjaro = "[♥](bold bg:#9A348E) "
+Arch = "[󰣐](bg:#9A348E) "
 
 [directory]
 style = "bg:#DA627D"
