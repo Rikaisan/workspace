@@ -64,6 +64,7 @@ printf "[multilib]\nInclude = /etc/pacman.d/mirrorlist\n" >> /etc/pacman.conf
 echo "$WARN_PREFIX git, sudo and rust will be installed if you don't have them."
 echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
+pacman -Sy
 pacman -S --needed git base-devel sudo rustup
 su $USERNAME -Pc "rustup default stable"
 
