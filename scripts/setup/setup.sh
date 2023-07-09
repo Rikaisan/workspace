@@ -17,9 +17,9 @@ INPUT_PREFIX="$PINK[Workspace Input]$RESET"
 
 # ------------------------------------------------------------------------ First-boot setup
 
-read -p "$INPUT_PREFIX Do you want to perform the first-boot setup?[y/N] " -n 1 -r
+read -p "$INPUT_PREFIX Do you want to perform the first-boot setup?[Y/n] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Nn]$ ]]
 then
     echo "$PREFIX Setting up locales and time..."
     ln -sf /usr/share/zoneinfo/America/Bogota /etc/localtime
@@ -65,8 +65,9 @@ echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
 pacman -S --needed git base-devel sudo rustup
 su $USERNAME -c "rustup default stable"
-su $USERNAME -c "git clone https://aur.archlinux.org/paru.git /tmp/paru && cd /tmp/paru && makepkg -Ccsi"
-rm -rf /tmp/paru
+echo "$WARN_PREFIX Run ./paru.sh to continue"
+chmod +x $SCRIPT_DIR/paru.sh
+su $USERNAME
 echo "$SUCCESS_PREFIX Finished installing paru."
 
 # ------------------------------------------------------------------------ Packages
@@ -74,7 +75,7 @@ echo "$SUCCESS_PREFIX Finished installing paru."
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-paru -S --needed - < essentials.pkglist
+paru -S --needed - < $SCRIPT_DIR/essential.pkglist
 systemctl enable NetworkManager
 
 echo "$WARN_PREFIX Installing Starship..."
@@ -84,21 +85,21 @@ echo "$SUCCESS_PREFIX Finished installing essential packages."
 
 # ------------------------------- Optional
 
-read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[y/N] " -n 1 -r
+read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[Y/n] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Nn]$ ]]
 then
-    paru -S --needed - < environment.pkglist
+    paru -S --needed - < $SCRIPT_DIR/environment.pkglist
     systemctl enable SDDM
     echo "$SUCCESS_PREFIX Done!"
 fi
 
 
-read -p "$INPUT_PREFIX Do you want to install the extra apps?[y/N] " -n 1 -r
+read -p "$INPUT_PREFIX Do you want to install the extra apps?[Y/n] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Nn]$ ]]
 then
-    paru -S --needed - < extra.pkglist
+    paru -S --needed - < $SCRIPT_DIR/extra.pkglist
     usermod -aG docker $USERNAME
     echo "$SUCCESS_PREFIX Done!"
 fi
@@ -140,9 +141,9 @@ git clone https://github.com/zplug/zplug $ZPLUG_HOME
 
 # ------------------------------------------------------------------------ Dotfiles
 
-read -p "$IMPORTANT_PREFIX Do you want to link the dotfiles?[y/N] " -n 1 -r
+read -p "$IMPORTANT_PREFIX Do you want to link the dotfiles?[Y/n] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Nn]$ ]]
 then
     echo "$PREFIX Copying dotfiles..."
     mkdir /home/$USERNAME/workspace
@@ -167,9 +168,9 @@ fi
 
 # ------------------------------------------------------------------------ Finished, wahoo!
 
-read -p "$PREFIX Finished the workspace setup, reboot?[y/N] " -n 1 -r
+read -p "$PREFIX Finished the workspace setup, reboot?[Y/n] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Yy]$ ]]
+if [[ $REPLY =~ ^[Nn]$ ]]
 then
    reboot
 fi
