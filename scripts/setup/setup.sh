@@ -64,11 +64,8 @@ echo "$WARN_PREFIX git, sudo and rust will be installed if you don't have them."
 echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
 pacman -S --needed git base-devel sudo rustup
-echo "$WARN_PREFIX Installing Rust..."
-rustup default stable
-git clone https://aur.archlinux.org/paru.git /tmp/paru
-chown -R $USERNAME:$USERNAME /tmp/paru
-su $USERNAME -c "cd /tmp/paru && makepkg -Ccsi"
+su $USERNAME -c "rustup default stable"
+su $USERNAME -c "git clone https://aur.archlinux.org/paru.git /tmp/paru && cd /tmp/paru && makepkg -Ccsi"
 rm -rf /tmp/paru
 echo "$SUCCESS_PREFIX Finished installing paru."
 
