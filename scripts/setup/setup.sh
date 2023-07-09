@@ -17,9 +17,9 @@ INPUT_PREFIX="$PINK[Workspace Input]$RESET"
 
 # ------------------------------------------------------------------------ First-boot setup
 
-read -p "$INPUT_PREFIX Do you want to perform the first-boot setup?[Y/n] " -n 1 -r
+read -p "$INPUT_PREFIX Do you want to perform the first-boot setup?[y/N] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo "$PREFIX Setting up locales and time..."
     ln -sf /usr/share/zoneinfo/America/Bogota /etc/localtime
@@ -85,9 +85,9 @@ echo "$SUCCESS_PREFIX Finished installing essential packages."
 
 # ------------------------------- Optional
 
-read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[Y/n] " -n 1 -r
+read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[y/N] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
     paru -S --needed - < $SCRIPT_DIR/environment.pkglist
     systemctl enable SDDM
@@ -95,9 +95,9 @@ then
 fi
 
 
-read -p "$INPUT_PREFIX Do you want to install the extra apps?[Y/n] " -n 1 -r
+read -p "$INPUT_PREFIX Do you want to install the extra apps?[y/N] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
     paru -S --needed - < $SCRIPT_DIR/extra.pkglist
     usermod -aG docker $USERNAME
@@ -141,9 +141,9 @@ git clone https://github.com/zplug/zplug $ZPLUG_HOME
 
 # ------------------------------------------------------------------------ Dotfiles
 
-read -p "$IMPORTANT_PREFIX Do you want to link the dotfiles?[Y/n] " -n 1 -r
+read -p "$IMPORTANT_PREFIX Do you want to link the dotfiles?[y/N] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo "$PREFIX Copying dotfiles..."
     mkdir /home/$USERNAME/workspace
@@ -168,9 +168,9 @@ fi
 
 # ------------------------------------------------------------------------ Finished, wahoo!
 
-read -p "$PREFIX Finished the workspace setup, reboot?[Y/n] " -n 1 -r
+read -p "$PREFIX Finished the workspace setup, reboot?[y/N] " -n 1 -r
 echo
-if [[ $REPLY =~ ^[Nn]$ ]]
+if [[ $REPLY =~ ^[Yy]$ ]]
 then
    reboot
 fi
