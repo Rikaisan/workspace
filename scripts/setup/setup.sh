@@ -93,7 +93,12 @@ chown -R $USERNAME:$USERNAME $TMP_LIST_DIR
 
 echo "$PREFIX Installing essentials..."
 su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < essential.pkglist"
+
 systemctl enable NetworkManager
+systemctl enable bluetooth
+systemctl enable sshd
+systemctl enable tlp
+systemctl enable acpid
 
 echo "$WARN_PREFIX Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
@@ -107,7 +112,8 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < environment.pkglist"
-    systemctl enable SDDM
+    systemctl enable sddm
+    systemctl enable cups
     echo "$SUCCESS_PREFIX Done!"
 fi
 
