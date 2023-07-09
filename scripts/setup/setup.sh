@@ -29,7 +29,7 @@ then
     printf "LANG=en_US.UTF-8\nLC_TIME=en_GB.UTF-8\n" > /etc/locale.conf
 
     read -p "$INPUT_PREFIX Type your desired hostname: " -r
-    echo $RESULT >> /etc/hostname
+    echo $RESULT > /etc/hostname
     echo "$IMPORTANT_PREFIX Setup the password for root"
     passwd
 fi
