@@ -30,6 +30,7 @@ then
 
     read -p "$INPUT_PREFIX Type your desired hostname: " -r
     echo $RESULT > /etc/hostname
+    printf "127.0.0.1\tlocalhost\n::1\t\tlocalhost\n" >> /etc/hosts
     echo "$IMPORTANT_PREFIX Setup the password for root"
     passwd
 fi
@@ -114,6 +115,7 @@ then
     su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < environment.pkglist"
     systemctl enable sddm
     systemctl enable cups
+    ln -s /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 /usr/local/bin/polkit-gnome
     echo "$SUCCESS_PREFIX Done!"
 fi
 
