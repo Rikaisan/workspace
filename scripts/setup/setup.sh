@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+REPO_SSH_LINK=git@github.com:Rikaisan/arch-workspace.git
 
 GREEN="$(tput setaf 2)"
 RED="$(tput setaf 1)"
@@ -141,6 +142,10 @@ then
     cp -r ../../* /home/$USERNAME/workspace/
 
     cd /home/$USERNAME/workspace/dotfiles
+
+    git remote rm origin
+    git remote add origin $REPO_SSH_LINK
+
     for dir in /home/$USERNAME/workspace/dotfiles  # list directories in the form "/tmp/dirname/"
     do
         dir=${dir%*/}      # remove the trailing "/"
