@@ -24,7 +24,6 @@ gtk4
 gvfs
 htop
 hyprland-git
-hyprpaper
 image-roll-bin
 intel-ucode
 iptables-nft
@@ -130,3 +129,4 @@ zsh
 zsh-autosuggestions
 zsh-history-substring-search
 zsh-syntax-highlighting
+swww
