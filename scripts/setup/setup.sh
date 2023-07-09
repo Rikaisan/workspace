@@ -80,7 +80,7 @@ echo "$SUCCESS_PREFIX Finished installing paru."
 
 # ------------------------------------------------------------------------ Packages
 
-$TMP_LIST_DIR=/tmp/ispackages
+TMP_LIST_DIR=/tmp/ispackages
 cd $SCRIPT_DIR
 mkdir $TMP_LIST_DIR
 cp *.pkglist $TMP_LIST_DIR/
