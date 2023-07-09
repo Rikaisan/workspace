@@ -47,6 +47,7 @@ fi
 # ------------------------------------------------------------------------ Mirrors
 
 echo "$PREFIX Refreshing mirrors..."
+pacman -S --needed reflector
 reflector --save /etc/pacman.d/mirrorlist --ipv4 --ipv6 --protocol https --latest 20 --sort rate
 
 # ------------------------------------------------------------------------ Paru
@@ -55,12 +56,10 @@ echo "$WARN_PREFIX git will be installed if you don't have it."
 echo "$PREFIX Installing paru..."
 cd $SCRIPT_DIR
 pacman -S --needed git
-git clone https://aur.archlinux.org/paru.git
-chown -R $USERNAME:$USERNAME paru
-cd paru
-su $USERNAME -c "cd $SCRIPT_DIR/paru && makepkg -Ccsi"
-cd ..
-rm -rf paru
+git clone https://aur.archlinux.org/paru.git /tmp/paru
+chown -R $USERNAME:$USERNAME /tmp/paru
+su $USERNAME -c "cd /tmp/paru && makepkg -Ccsi"
+rm -rf /tmp/paru
 echo "$SUCCESS_PREFIX Finished installing paru."
 
 # ------------------------------------------------------------------------ Packages
