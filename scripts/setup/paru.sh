@@ -1,6 +1,5 @@
 git clone https://aur.archlinux.org/paru.git /tmp/paru
 cd /tmp/paru
-makepkg -Ccsi
+makepkg -si
 cd /tmp
 rm -rf paru
-exit

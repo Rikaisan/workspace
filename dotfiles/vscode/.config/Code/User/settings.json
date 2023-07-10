@@ -1,9 +1,31 @@
 {
     "workbench.iconTheme": "catppuccin-mocha",
-    "workbench.colorTheme": "Catppuccin Mocha",
-    "editor.fontFamily": "'JetBrainsMonoNL Nerd Font', 'monospace', monospace",
+    "editor.fontFamily": "'JetBrainsMonoNL Nerd Font Mono', 'monospace', monospace",
     "editor.fontSize": 12,
     "editor.minimap.enabled": false,
     "explorer.confirmDelete": false,
-    "security.workspace.trust.enabled": false
+    "security.workspace.trust.enabled": false,
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "colorize.decoration_type": "underline",
+    "colorize.include": [
+
+        "**/*.css",
+        "**/*.scss",
+        "**/*.sass",
+        "**/*.less",
+        "**/*.styl"
+    ],
+    "colorize.languages": [
+
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "postcss",
+        "sss",
+        "stylus",
+        "xml",
+        "svg",
+        "yaml"
+    ]
 }

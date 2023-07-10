@@ -86,20 +86,19 @@ echo "$SUCCESS_PREFIX Finished installing paru."
 TMP_LIST_DIR=/tmp/ispackages
 cd $SCRIPT_DIR
 mkdir $TMP_LIST_DIR
-cp *.pkglist $TMP_LIST_DIR/
+cp *.lst $TMP_LIST_DIR/
 chown -R $USERNAME:$USERNAME $TMP_LIST_DIR
 
 
 # ------------------------------- Essential
 
 echo "$PREFIX Installing essentials..."
-su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < essential.pkglist"
+su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < essential.lst"
 
 systemctl enable NetworkManager
 systemctl enable bluetooth
-systemctl enable sshd
+# systemctl enable sshd
 systemctl enable tlp
-systemctl enable acpid
 
 echo "$WARN_PREFIX Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
@@ -112,12 +111,9 @@ read -p "$INPUT_PREFIX Do you want to install the Hyprland environment?[y/N] " -
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < environment.pkglist"
+    su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < environment.lst"
     systemctl enable sddm
-    systemctl enable cups
     ln -s /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 /usr/local/bin/polkit-gnome
-    echo GTK_THEME=Adwaita:dark >> /etc/environment
-    echo QT_STYLE_OVERRIDE=kvantum >> /etc/environment
     echo "$SUCCESS_PREFIX Done!"
 fi
 
@@ -126,12 +122,12 @@ read -p "$INPUT_PREFIX Do you want to install the extra apps?[y/N] " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < extra.pkglist"
+    su $USERNAME -Pc "cd $TMP_LIST_DIR && paru -S --needed - < extra.lst"
     usermod -aG docker $USERNAME
     echo "$SUCCESS_PREFIX Done!"
 fi
 
-rm -rf /tmp/ispackages
+rm -rf $TMP_LIST_DIR
 
 # ------------------------------- Bootloader
 
@@ -177,20 +173,22 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
     echo "$PREFIX Copying dotfiles..."
-    mkdir /home/$USERNAME/workspace
-    cp -r ../../* /home/$USERNAME/workspace/
+    DOTFILES_DIR=/home/$USERNAME/source/workspace/dotfiles
+    mkdir -p $DOTFILES_DIR
+    cd $SCRIPT_DIR
+    cp -r ../../* $DOTFILES_DIR/
 
-    cd /home/$USERNAME/workspace/dotfiles
+    cd $DOTFILES_DIR
 
-    git remote rm origin
-    git remote add origin $REPO_SSH_LINK
+    # git remote rm origin
+    # git remote add origin $REPO_SSH_LINK
 
-    for dir in /home/$USERNAME/workspace/dotfiles  # list directories in the form "/tmp/dirname/"
+    for dir in $DOTFILES_DIR/*  # list directories in the form "/tmp/dirname/"
     do
         dir=${dir%*/}      # remove the trailing "/"
         dir=${dir##*/}    # print everything after the final "/"
 
-        stow -t /home/$USERNAME $dir
+        stow -t /home/$USERNAME/ $dir
     done
     cd /home
     chown -R $USERNAME:$USERNAME $USERNAME

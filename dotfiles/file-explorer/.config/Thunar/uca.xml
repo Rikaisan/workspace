@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1688971115116004-1</unique-id>
+	<command>kitty %f</command>
+	<description></description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>visual-studio-code</icon>
+	<name>Open in new window</name>
+	<submenu>Open in VSCode</submenu>
+	<unique-id>1688979925209144-1</unique-id>
+	<command>code %f</command>
+	<description>Opens the current folder or file in VSCode</description>
+	<range></range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>visual-studio-code</icon>
+	<name>Reuse current window</name>
+	<submenu>Open in VSCode</submenu>
+	<unique-id>1688980085179754-2</unique-id>
+	<command>code %f -r</command>
+	<description>Replaces the workspace you are currently in</description>
+	<range></range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>
