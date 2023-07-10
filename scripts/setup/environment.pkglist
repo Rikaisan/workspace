@@ -1,9 +1,9 @@
 cups
 firefox
-gtk4
 gvfs
 hyprland-git
 image-roll-bin
+kvantum
 kitty
 notification-daemon
 noto-fonts-emoji
@@ -17,9 +17,12 @@ pipewire-jack
 pipewire-pulse
 polkit-gnome
 sddm
-swww
+sddm-catppuccin-git
+swww-git
+themix-full-git
 thunar
 thunar-volman
+thunar-archive-plugin
 ttf-jetbrains-mono-nerd
 ttf-ms-fonts
 vlc

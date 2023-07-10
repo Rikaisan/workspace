@@ -116,6 +116,8 @@ then
     systemctl enable sddm
     systemctl enable cups
     ln -s /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 /usr/local/bin/polkit-gnome
+    echo GTK_THEME=Adwaita:dark >> /etc/environment
+    echo QT_STYLE_OVERRIDE=kvantum >> /etc/environment
     echo "$SUCCESS_PREFIX Done!"
 fi
 
