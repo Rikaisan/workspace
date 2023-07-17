@@ -1,3 +1,4 @@
 alias ls=exa
+alias lsl="exa -la"
 alias dotcfg="stow -t ~"
 alias list-open-ports="sudo netstat -tunlp"
