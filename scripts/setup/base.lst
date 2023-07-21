@@ -1,7 +1,7 @@
 base-devel
 bash-completion
 git
-intel-ucode
+amd-ucode
 man-db
 man-pages
 texinfo

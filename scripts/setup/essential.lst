@@ -4,7 +4,6 @@ bluez
 bluez-utils
 btop
 byobu
-dialog
 dnsmasq
 exa
 gdu
@@ -13,7 +12,6 @@ neovim
 network-manager-applet
 networkmanager
 nethogs
-netctl
 openssh
 p7zip
 python-pip
@@ -23,8 +21,6 @@ reflector
 ripgrep
 rustup
 stow
-timeshift-bin
-tlp
 tmux
 wget
 wireless_tools
@@ -33,4 +29,3 @@ zsh
 zsh-autosuggestions
 zsh-history-substring-search
 zsh-syntax-highlighting
-acpi

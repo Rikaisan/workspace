@@ -3,16 +3,14 @@ hyprland-git
 kitty
 notification-daemon
 noto-fonts-emoji
-nvidia-open
-nvidia-settings
-nvidia-utils
 nvtop
 pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pavucontrol
-polkit-gnome
+polkit
+polkit-kde-agent
 sddm
 sddm-catppuccin-git
 swww-git
@@ -33,5 +31,5 @@ ttf-ms-fonts
 vlc
 visual-studio-code-bin
 wofi
+waybar-hyprland-git
 xdg-desktop-portal-hyprland
-xf86-video-intel
