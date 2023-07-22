@@ -3,9 +3,9 @@ docker
 etcher-bin
 gparted
 onlyoffice-bin
-prismlauncher
+prismlauncher-bin
 qbittorrent
 selectdefaultapplication-git
 steam
 youtube-dl
-timeshift-bin
+timeshift
