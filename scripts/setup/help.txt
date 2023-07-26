@@ -1,0 +1,1 @@
+To see fstab mounted drives, add the 'x-gvfs-show' flag
