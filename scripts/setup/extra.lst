@@ -1,8 +1,12 @@
+cups
 discord
 docker
 etcher-bin
 gparted
 onlyoffice-bin
+openrgb-bin
+i2c-tools
+epson-inkjet-printer-escpr
 prismlauncher-bin
 qbittorrent
 selectdefaultapplication-git
