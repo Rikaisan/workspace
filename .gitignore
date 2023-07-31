@@ -2,3 +2,6 @@
 dotfiles/vscode/.config/Code/*
 !dotfiles/vscode/.config/Code/User/keybindings.json
 !dotfiles/vscode/.config/Code/User/settings.json
+!dotfiles/zsh/.config/zsh
+dotfiles/zsh/.config/zsh/*
+!dotfiles/zsh/.config/zsh/.zshrc
