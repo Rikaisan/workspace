@@ -1,8 +1,10 @@
 bspwm
+sxhkd
 polybar
 rofi
 kitty
 picom
+nitrogen
 zsh
 zsh-autosuggestions
 zsh-history-substring-search
