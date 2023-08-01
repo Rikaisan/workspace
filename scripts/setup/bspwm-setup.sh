@@ -1,4 +1,4 @@
-pacman -S kitty picom zsh zsh-autosuggestions zsh-history-substring-search zsh-syntax-highlighting
+pacman -S --needed - < bspwm.lst
 
 if !(grep -q ZDOTDIR /etc/zsh/zshenv 2> /dev/null)
 then
