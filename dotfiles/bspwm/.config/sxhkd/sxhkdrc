@@ -61,8 +61,14 @@ super + g
 #
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + t
+	bspc node -t tiled
+
+super + v
+	bspc node -t \~floating
+
+super + f
+	bspc node -t \~fullscreen
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -76,14 +82,26 @@ super + ctrl + {m,x,y,z}
 super + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
+# move node to direction or monitor
 super + shift + {Left,Down,Up,Right}
 	dir={west,south,north,east}; \
 	bspc node -s "$dir.local" --follow \
 	    || bspc node -m "$dir" --follow
 
+# move node to next/previous desktop(workspace)
+super + shift + bracket{left,right}
+	bspc node -d {prev,next}.local --follow
+
+# focus next/previous monitor
+super + {semicolon,apostrophe}
+	bspc monitor --focus {prev,next}
+
+super + shift + {semicolon,apostrophe}
+	bspc node -m {prev,next} --follow
+
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+# super + {p,b,comma,period}
+# 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous window in the current desktop
 super + {_,shift + }c
@@ -171,10 +189,11 @@ XF86MonBrightnessDown
 
 # Screenshot
 Print
-  scrot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+#   scrot "$(xdg-user-dir PICTURES)/screenshot-$(date +%F_%T).png"
+	flameshot gui -p ~/Pictures/screenshots -c
 
-super + Print
-  ~/.config/bspwm/scripts/screenshot.sh
+# super + Print
+#   ~/.config/bspwm/scripts/screenshot.sh
 
 # Shortcuts
 super + w 
