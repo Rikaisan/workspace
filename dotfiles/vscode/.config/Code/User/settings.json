@@ -28,5 +28,13 @@
         "svg",
         "yaml"
     ],
-    "editor.inlineSuggest.enabled": true
+    "editor.inlineSuggest.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.inlayHints.enabled": "offUnlessPressed",
+    "editor.matchBrackets": "never",
+    "errorLens.enabled": false,
+    "vscord.app.name": "Visual Studio Code",
+    "vscord.status.idle.check": false,
+    "vscord.status.idle.enabled": false,
+    "vscord.status.problems.enabled": false
 }

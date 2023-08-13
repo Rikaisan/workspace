@@ -1,13 +1,13 @@
 format = """
-[](#9A348E)\
+[](#7d41eb)\
 $os\
 $time\
-[](bg:#DA627D fg:#9A348E)\
+[](bg:#8e5cf2 fg:#7d41eb)\
 $directory\
-[](fg:#DA627D bg:#FCA17D)\
+[](fg:#8e5cf2 bg:#9f75f8)\
 $git_branch\
 $git_status\
-[](fg:#FCA17D bg:#06969A)\
+[](fg:#9f75f8 bg:#b08dfe)\
 $c\
 $elixir\
 $elm\
@@ -20,7 +20,7 @@ $nodejs\
 $nim\
 $rust\
 $scala\
-[](fg:#06969A)
+[](fg:#b08dfe)
 [󱞪](bold cyan) 
 """
 
@@ -39,15 +39,15 @@ disabled = false
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 [os]
-style = "bg:#9A348E"
+style = "bg:#7d41eb"
 disabled = false # Disabled by default
 [os.symbols]
-Manjaro = "[♥](bold bg:#9A348E) "
-Arch = "[󰣐](bg:#9A348E) "
-EndeavourOS = "[󰣐](bg:#9A348E) "
+Manjaro = "[♥](bold bg:#7d41eb) "
+Arch = "[󰣐](bg:#7d41eb) "
+EndeavourOS = "[󰣐](bg:#7d41eb) "
 
 [directory]
-style = "bg:#DA627D"
+style = "bg:#8e5cf2"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = ""
@@ -67,79 +67,79 @@ truncation_symbol = ""
 
 [c]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [docker_context]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol $context ]($style) $path'
 
 [elixir]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [elm]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#FCA17D"
+style = "bg:#9f75f8"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-style = "bg:#FCA17D"
+style = "bg:#9f75f8"
 format = '[$all_status$ahead_behind ]($style)'
 
 [golang]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [gradle]
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [haskell]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [java]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [julia]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [nim]
 symbol = "󰆥 "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [scala]
 symbol = " "
-style = "bg:#06969A"
+style = "bg:#b08dfe"
 format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
 time_format = "%R" # Hour:Minute Format
-style = "bold bg:#9A348E"
+style = "bold bg:#7d41eb"
 format = '[$time ]($style)'
